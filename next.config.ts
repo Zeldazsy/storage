@@ -1,14 +1,25 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    appDir: true,
-    typedRoutes: true,
-    optimizeCss: true,
-    optimizeFonts: true,
-    serverActions: true,
-    serverRendering: 'blocking', // <- เพิ่มบรรทัดนี้
-  },
-  compress: true,
-}
+import type { NextConfig } from 'next';
 
-export default nextConfig
+const nextConfig: NextConfig = {
+  compress: true,
+  reactStrictMode: true,
+  swcMinify: true,
+  optimizeFonts: true,
+  optimizeCss: true,
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
+  },
+  modularizeImports: {
+    lodash: {
+      transform: 'lodash/{{member}}',
+    },
+  },
+  experimental: {
+    typedRoutes: true,
+    scrollRestoration: true,
+    urlImports: [],
+  },
+};
+
+export default nextConfig;
